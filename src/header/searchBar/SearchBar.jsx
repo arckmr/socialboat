@@ -11,7 +11,7 @@ function SearchBar() {
          try{
           let data = await  axios
           .get("https://asia-south1-socialboat-dev.cloudfunctions.net/assignmentVideos",
-          { params: { q: e, numResults:5 } })
+          { params: { q: e.target.value , numResults:5 } })
           .then((response) => {
               console.log(response.data.results)
                setSource(response.data.results);        
@@ -25,20 +25,13 @@ function SearchBar() {
              
        }
 
-      useEffect(() => {
-        fetchdata()
-     }, [])
 
-     function handleSearch(e){
-             fetchdata(e.target.value)   
-         
     
-    }
     
   return (
     <div className='search'>
          <div className='searchBar'>
-          <input type="text" className='sInput' placeholder='Search...' onChange={handleSearch} /><SearchIcon />
+          <input type="text" className='sInput' placeholder='Search...' onChange={fetchdata} /><SearchIcon />
        </div>
           
        <ul className='suggestion' style={{listStyle:"none",position:'absolute'}}>
